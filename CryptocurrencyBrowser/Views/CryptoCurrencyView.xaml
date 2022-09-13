@@ -8,21 +8,33 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="30"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="30" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="20" />
+            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
 
-        <ListView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding CryptoCurrencies}">
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Top 10 Crypto Currencies" HorizontalAlignment="Center" FontSize="18"/>
+
+        <ListView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding CryptoCurrencies}" Width="730">
 
             <ListView.View>
                 <GridView>
+                    <GridView.ColumnHeaderContainerStyle>
+                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                            <Setter Property="IsEnabled" Value="False"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="TextElement.Foreground" Value="Black"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </GridView.ColumnHeaderContainerStyle>
 
                     <GridViewColumn Header="Coin" Width="180">
                         <GridViewColumn.CellTemplate>
@@ -40,7 +52,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
-                    <GridViewColumn Header="24h" Width="180">
+                    <GridViewColumn Header="24h Percent Change" Width="180">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Padding="0 0 20 0" Text="{Binding ChangePercent24Hr}" />
@@ -48,7 +60,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
-                    <GridViewColumn Header="24h Volume" Width="200">
+                    <GridViewColumn Header="24h Volume" Width="180">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Padding="0 0 20 0" Text="{Binding VolumeUsd24Hr}" />

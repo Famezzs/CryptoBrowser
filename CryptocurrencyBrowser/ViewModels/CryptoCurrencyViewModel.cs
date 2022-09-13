@@ -16,7 +16,14 @@ namespace CryptocurrencyBrowser.ViewModels
 
         public CryptoCurrencyViewModel()
         {
-            _cryptoCurrency = CryptoCurrencyList.GetTopTenCurrency().GetAwaiter().GetResult();
+            try
+            {
+                _cryptoCurrency = CryptoCurrencyList.GetTopTenCurrency().GetAwaiter().GetResult();
+            }
+            catch
+            {
+                _cryptoCurrency = new();
+            }
         }
     }
 }

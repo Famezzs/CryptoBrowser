@@ -10,19 +10,16 @@ namespace CryptocurrencyBrowser.Models
 {
     public class CryptoCurrency
     {
-        public string Id { get; }
-        public string Name { get; }
-        public decimal Price { get; }
-        public decimal VolumeUsd24h { get; }
-        public double ChangePercent24h { get; }
-            
-        public CryptoCurrency(string id, string name, decimal price, decimal volumeUsd24h, double changePercent24h)
-        {
-            Id = id;
-            Name = name;
-            Price = price;
-            VolumeUsd24h = volumeUsd24h;
-            ChangePercent24h = changePercent24h;
-        }
+        public String? Id { get; set; }
+        public Int16? Rank { get; set; }
+        public String? Name { get; set; }
+        public Double? Supply { get; set; }
+        public Double? MaxSupply { get; set; }
+        public Double? MarketCapUsd { get; set; }
+        public Double? VolumeUsd24Hr { get; set; }
+        public Double? PriceUsd { get; set; }
+        public Double? ChangePercent24Hr { get; set; }
+        public Double? Vwap24Hr { get; set; }
+        public String? Explorer { get; set; }
     }
 }

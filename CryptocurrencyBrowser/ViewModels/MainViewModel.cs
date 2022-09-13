@@ -12,7 +12,7 @@ namespace CryptocurrencyBrowser.ViewModels
 
         public MainViewModel()
         {
-            CurrentViewModel = new CryptoCurrencyViewModel();
+            CurrentViewModel = new CurrencySearchViewModel();
         }
     }
 }

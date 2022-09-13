@@ -30,12 +30,12 @@
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Text="Currency Name" Margin="10 10 0 0" FontSize="20" Width="300" HorizontalAlignment="Left"/>
-            <TextBox Grid.Row="1" Text="" Margin="10 10 0 0" FontSize="20" Width="300" HorizontalAlignment="Left"/>
+            <TextBox Grid.Row="1" Text="{Binding CoinName, UpdateSourceTrigger=PropertyChanged}" Margin="10 10 0 0" FontSize="20" Width="300" HorizontalAlignment="Left"/>
         </Grid>
 
         <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
-            <Button Margin="10 10 0 0" Content="Submit" FontSize="18" Padding="5"/>
-            <Button Margin="10 10 0 0" Content="Cancel" FontSize="18" Padding="5"/>
+            <Button Margin="10 10 0 0" Content="Submit" Command="{Binding SubmitCommand}" FontSize="18" Padding="5"/>
+            <Button Margin="10 10 0 0" Content="Cancel" Command="{Binding CancelCommand}" FontSize="18" Padding="5"/>
         </StackPanel>
     </Grid>
 </UserControl>

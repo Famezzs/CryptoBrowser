@@ -1,4 +1,5 @@
 ﻿using CryptocurrencyBrowser.ViewModels;
+using System.Windows;
 
 namespace CryptocurrencyBrowser.Commands
 {
@@ -14,6 +15,10 @@ namespace CryptocurrencyBrowser.Commands
         public override void Execute(object? parameter)
         {
             _currencySearchViewModel.SearchResult = null;
+
+            _currencySearchViewModel.CoinName = string.Empty;
+
+            _currencySearchViewModel.ShowResult = Visibility.Hidden;
         }
     }
 }

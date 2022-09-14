@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 
 using System;
 using System.Net.Http;
+using System.Windows;
 
 namespace CryptocurrencyBrowser.Commands
 {
@@ -14,8 +15,8 @@ namespace CryptocurrencyBrowser.Commands
         private readonly CurrencySearchViewModel _currencySearchViewModel;
 
         private string? _currencyId;
-        public string? CurrencyId 
-        { 
+        public string? CurrencyId
+        {
             get
             {
                 return _currencyId;
@@ -38,13 +39,35 @@ namespace CryptocurrencyBrowser.Commands
                 return;
             }
 
-            var httpClient = new HttpClient();
+            try
+            {
+                var httpClient = new HttpClient();
 
-            var response = httpClient.GetStringAsync(ConstantValues._coinSearchUrl + CurrencyId).GetAwaiter().GetResult();
+                var response = httpClient.GetStringAsync(ConstantValues._assetSearchUrl + CurrencyId)
+                    .GetAwaiter()
+                    .GetResult();
 
-            var result = JsonConvert.DeserializeObject<CryptoCurrencySearch>(response);
+                var resultCoin = JsonConvert.DeserializeObject<CryptoCurrencySearch>(response);
 
-            _currencySearchViewModel.SearchResult = result;
+                response = httpClient.GetStringAsync(ConstantValues._assetSearchUrl +
+                    CurrencyId + ConstantValues._marketSearchSubUrl)
+                    .GetAwaiter()
+                    .GetResult();
+
+                var resultMarkets = JsonConvert.DeserializeObject<CryptoMarketSearch>(response);
+
+                var searchResult = new CryptoCurrencySearchBinder(resultCoin!.Data!, resultMarkets!.Data!);
+
+                _currencySearchViewModel.SearchResult = searchResult;
+
+                _currencySearchViewModel.ShowResult = Visibility.Visible;
+            }
+            catch
+            {
+                _currencySearchViewModel.SearchResult = null;
+
+                _currencySearchViewModel.ShowResult = Visibility.Hidden;
+            }
         }
     }
 }

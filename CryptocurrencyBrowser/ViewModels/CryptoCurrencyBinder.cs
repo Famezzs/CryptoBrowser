@@ -1,4 +1,5 @@
-﻿using CryptocurrencyBrowser.Models;
+﻿using CryptocurrencyBrowser.Helpers;
+using CryptocurrencyBrowser.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,9 @@ namespace CryptocurrencyBrowser.ViewModels
         private readonly CryptoCurrency _cryptoCurrency;
 
         public string Coin => _cryptoCurrency.Name ?? string.Empty;
-        public string Price => "$" + _cryptoCurrency.PriceUsd ?? string.Empty;
-        public string ChangePercent24Hr => _cryptoCurrency.ChangePercent24Hr + "%" ?? string.Empty;
-        public string VolumeUsd24Hr => "$" + _cryptoCurrency.VolumeUsd24Hr ?? string.Empty;
+        public string Price => "$" + FormatNumber.FancyFormat(_cryptoCurrency.PriceUsd ?? 0);
+        public string ChangePercent24Hr => FormatNumber.RoundDouble(_cryptoCurrency.ChangePercent24Hr ?? 0) + "%";
+        public string VolumeUsd24Hr => "$" + FormatNumber.FancyFormat(_cryptoCurrency.VolumeUsd24Hr ?? 0);
 
         public CryptoCurrencyBinder(CryptoCurrency cryptoCurrency)
         {

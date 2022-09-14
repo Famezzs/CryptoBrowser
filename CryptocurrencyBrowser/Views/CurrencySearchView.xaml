@@ -11,70 +11,178 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="30" />
         </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <TextBlock Grid.Row="1" Grid.Column="1" FontSize="24" Text="Search for Currency" Width="210" HorizontalAlignment="Left"/>
-
-        <Grid Grid.Row="2" Grid.Column="1" Margin="0 25 0 0">
+        <Grid Grid.Column="1">
             <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="Currency Name" Margin="10 10 0 0" FontSize="20" Width="300" HorizontalAlignment="Left"/>
-            <TextBox Grid.Row="1" Text="{Binding CoinName, UpdateSourceTrigger=PropertyChanged}" Margin="10 10 0 0" FontSize="20" Width="300" HorizontalAlignment="Left"/>
-        </Grid>
+            <TextBlock Grid.Row="1" Grid.Column="1" FontSize="24" Text="Search for Currency" Width="360" HorizontalAlignment="Left"/>
 
-        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
-            <Button Margin="10 10 0 0" Content="Submit" Command="{Binding SubmitCommand}" FontSize="18" Padding="5"/>
-            <Button Margin="10 10 0 0" Content="Cancel" Command="{Binding CancelCommand}" FontSize="18" Padding="5"/>
-        </StackPanel>
+            <Grid Grid.Row="2" Grid.Column="1" Margin="0 25 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
 
-        <TextBlock Grid.Column="1" Grid.Row="4" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Text="No result found." Visibility="{Binding ShowError}"/>
-        <Grid Visibility="{Binding ShowResult}" Grid.Column="1" Grid.Row="4">
-            <Grid Grid.Column="1" Grid.Row="4" DataContext="{Binding SearchResult}">
+                <TextBlock Grid.Row="0" Text="Currency Name" Margin="10 10 0 0" FontSize="20" Width="300" HorizontalAlignment="Left"/>
+                <TextBox Grid.Row="1" Text="{Binding CoinName, UpdateSourceTrigger=PropertyChanged}" Margin="10 10" FontSize="20" Width="300" HorizontalAlignment="Left" Padding="5 5"/>
+            </Grid>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                <Button Margin="10 10 0 10" Content="Submit" Command="{Binding SubmitCommand}" FontSize="18" Padding="5"/>
+                <Button Margin="10 10 0 10" Content="Cancel" Command="{Binding CancelCommand}" FontSize="18" Padding="5"/>
+            </StackPanel>
 
-                <Grid DataContext="{Binding CryptoCurrency}" Grid.Column="0">
+            <TextBlock Grid.Column="1" Grid.Row="4" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Text="No result found." Visibility="{Binding ShowError}"/>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="30" />
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+            <Grid Visibility="{Binding ShowResult}" Grid.Column="1" Grid.Row="4">
+                <Grid Grid.Column="1" Grid.Row="4" DataContext="{Binding SearchResult}">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="0" Grid.Column="0" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="Name"/>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding Coin}"/>
-                    <TextBlock Grid.Row="2" Grid.Column="0" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="Estimated Price"/>
-                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding Price}"/>
+                    <Border BorderThickness="1" BorderBrush="Gray" Grid.Column="0"  Margin="10 0 0 10"/>
 
-                    <TextBlock Grid.Row="0" Grid.Column="1" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="Percentage Change"/>
-                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding ChangePercent24Hr}"/>
+                    <Grid Grid.Column="0" Margin="10 0 0 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Border BorderThickness="1" BorderBrush="Gray">
+                            <TextBlock Text="Coin Info" Grid.Row="0" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Padding="0 10"/>
+                        </Border>
+
+                        <Grid DataContext="{Binding CryptoCurrency}" Grid.Row="1">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="Name"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding Coin}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="Estimated Price"/>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding Price}"/>
+
+                            <TextBlock Grid.Row="0" Grid.Column="1" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="Volume Change"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding ChangePercent24Hr}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="1" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="24h Volume"/>
+                            <TextBlock Grid.Row="3" Grid.Column="1" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding VolumeUsd24Hr}"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="2" Margin="10 0 0 0" Visibility="{Binding ShowResult}">
+            <Grid Grid.Column="2" DataContext="{Binding SearchResult}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="1" Grid.Column="1" FontSize="24" Text="Market Info" Width="210" HorizontalAlignment="Left" Margin="20 0 0 0"/>
+
+                <Grid DataContext="{Binding CryptoMarkets[0]}" Grid.Row="2" Margin="20 30 0 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border BorderThickness="1" BorderBrush="Gray" Grid.ColumnSpan="2" Grid.RowSpan="4"/>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="Exchange Name"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding ExchangeName}" Padding="0 0 0 5"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="Market Price"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding Price}" Padding="0 0 0 5"/>
+
+                    <TextBlock Grid.Row="0" Grid.Column="1" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="Volume Change"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding VolumePercent}" Padding="0 0 0 5"/>
                     <TextBlock Grid.Row="2" Grid.Column="1" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="24h Volume"/>
-                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding VolumeUsd24Hr}"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding VolumeUsd24Hr}" Padding="0 0 0 5"/>
+                </Grid>
+
+                <Grid DataContext="{Binding CryptoMarkets[1]}" Grid.Row="3" Margin="20 20 0 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border BorderThickness="1" BorderBrush="Gray" Grid.ColumnSpan="2" Grid.RowSpan="4"/>
+                    
+                    <TextBlock Grid.Row="0" Grid.Column="0" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="Exchange Name"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding ExchangeName}" Padding="0 0 0 5"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="Market Price"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding Price}" Padding="0 0 0 5"/>
+
+                    <TextBlock Grid.Row="0" Grid.Column="1" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="Volume Change"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding VolumePercent}" Padding="0 0 0 5"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="24h Volume"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding VolumeUsd24Hr}" Padding="0 0 0 5"/>
+                </Grid>
+
+                <Grid DataContext="{Binding CryptoMarkets[2]}" Grid.Row="4" Margin="20 20 0 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border BorderThickness="1" BorderBrush="Gray" Grid.ColumnSpan="2" Grid.RowSpan="4"/>
+                    
+                    <TextBlock Grid.Row="0" Grid.Column="0" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="Exchange Name"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding ExchangeName}" Padding="0 0 0 5"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="Market Price"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding Price}" Padding="0 0 0 5"/>
+
+                    <TextBlock Grid.Row="0" Grid.Column="1" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="Volume Change"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding VolumePercent}" Padding="0 0 0 5"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="24h Volume"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding VolumeUsd24Hr}" Padding="0 0 0 5"/>
                 </Grid>
             </Grid>
         </Grid>

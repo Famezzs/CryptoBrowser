@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CryptocurrencyBrowser"
         xmlns:views="clr-namespace:CryptocurrencyBrowser.Views"
         mc:Ignorable="d"
-        Title="Currency Browser" Height="450" Width="820">
+        Title="Currency Browser" Height="600" Width="900">
     <Grid MaxWidth="740">
         <views:CurrencySearchView DataContext="{Binding CurrentViewModel}"/>
     </Grid>

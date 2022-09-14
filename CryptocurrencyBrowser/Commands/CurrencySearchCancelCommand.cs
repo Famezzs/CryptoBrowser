@@ -19,6 +19,8 @@ namespace CryptocurrencyBrowser.Commands
             _currencySearchViewModel.CoinName = string.Empty;
 
             _currencySearchViewModel.ShowResult = Visibility.Hidden;
+
+            _currencySearchViewModel.ShowError = Visibility.Hidden;
         }
     }
 }

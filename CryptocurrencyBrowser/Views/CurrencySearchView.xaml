@@ -43,6 +43,7 @@
             <Button Margin="10 10 0 0" Content="Cancel" Command="{Binding CancelCommand}" FontSize="18" Padding="5"/>
         </StackPanel>
 
+        <TextBlock Grid.Column="1" Grid.Row="4" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Text="No result found." Visibility="{Binding ShowError}"/>
         <Grid Visibility="{Binding ShowResult}" Grid.Column="1" Grid.Row="4">
             <Grid Grid.Column="1" Grid.Row="4" DataContext="{Binding SearchResult}">
 

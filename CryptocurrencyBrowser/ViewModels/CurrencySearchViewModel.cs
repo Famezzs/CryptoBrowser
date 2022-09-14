@@ -50,6 +50,20 @@ namespace CryptocurrencyBrowser.ViewModels
             }
         }
 
+        private Visibility _showError = Visibility.Hidden;
+        public Visibility ShowError
+        {
+            get
+            {
+                return _showError;
+            }
+            set
+            {
+                _showError = value;
+                OnPropertyChanged(nameof(ShowError));
+            }
+        }
+
         public CurrencySearchSubmitCommand SubmitCommand { get; }
         public CurrencySearchCancelCommand CancelCommand { get; }
 

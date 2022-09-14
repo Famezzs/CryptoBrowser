@@ -61,12 +61,16 @@ namespace CryptocurrencyBrowser.Commands
                 _currencySearchViewModel.SearchResult = searchResult;
 
                 _currencySearchViewModel.ShowResult = Visibility.Visible;
+
+                _currencySearchViewModel.ShowError = Visibility.Hidden;
             }
             catch
             {
                 _currencySearchViewModel.SearchResult = null;
 
                 _currencySearchViewModel.ShowResult = Visibility.Hidden;
+
+                _currencySearchViewModel.ShowError = Visibility.Visible;
             }
         }
     }

@@ -1,15 +1,13 @@
 ﻿using CryptocurrencyBrowser.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CryptocurrencyBrowser.Models;
 using System.Windows.Input;
 
 namespace CryptocurrencyBrowser.ViewModels
 {
     public class CurrencySearchViewModel : ViewModelBase
     {
+        public CryptoCurrencySearch? SearchResult { get; set; }
+
         private string _coinName = string.Empty;
         public string CoinName
         {
@@ -20,16 +18,17 @@ namespace CryptocurrencyBrowser.ViewModels
             set
             {
                 _coinName = value;
+                SubmitCommand.CurrencyId = value;
                 OnPropertyChanged(nameof(CoinName));
             }
         }
 
-        public ICommand SubmitCommand { get; }
+        public CurrencySearchSubmitCommand SubmitCommand { get; }
         public ICommand CancelCommand { get; }
 
         public CurrencySearchViewModel()
         {
-            SubmitCommand = new CurrencySearchSubmitCommand();
+            SubmitCommand = new CurrencySearchSubmitCommand(this);
         }
     }
 }

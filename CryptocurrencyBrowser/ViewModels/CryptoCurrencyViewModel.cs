@@ -18,7 +18,7 @@ namespace CryptocurrencyBrowser.ViewModels
         {
             try
             {
-                _cryptoCurrency = CryptoCurrencyList.GetTopTenCurrency().GetAwaiter().GetResult();
+                _cryptoCurrency = CryptoCurrencyList.GetTopTenCurrency();
             }
             catch
             {

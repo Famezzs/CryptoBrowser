@@ -1,21 +1,15 @@
 ﻿using CryptocurrencyBrowser.ViewModels;
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CryptocurrencyBrowser.Stores
 {
     public class NavigationStore
     {
-        private ViewModelBase _currentViewModel;
-        public ViewModelBase CurrentViewModel
+        private ViewModelBase? _currentViewModel;
+        public ViewModelBase? CurrentViewModel
         {
-            get
-            {
-                return _currentViewModel; 
-            }
+            get => _currentViewModel;
             set
             {
                 _currentViewModel = value;
@@ -23,7 +17,7 @@ namespace CryptocurrencyBrowser.Stores
             }
         }
 
-        public event Action CurrentViewModelChanged;
+        public event Action? CurrentViewModelChanged;
 
         private void OnCurrentViewModelChanged()
         {

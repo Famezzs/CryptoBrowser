@@ -24,7 +24,7 @@ namespace CryptocurrencyBrowser
 
         protected override void OnStartup(StartupEventArgs eventArguments)
         {
-            _navigationStore.CurrentViewModel = new CryptoCurrencyViewModel(_navigationStore, CreateCurrencySearchViewModel);
+            _navigationStore.CurrentViewModel = new CurrencyViewModel(_navigationStore, CreateCurrencySearchViewModel);
 
             MainWindow = new MainWindow()
             {
@@ -41,9 +41,9 @@ namespace CryptocurrencyBrowser
             return new CurrencySearchViewModel(_navigationStore, CreateCryptoCurrencyViewModel);
         }
 
-        private CryptoCurrencyViewModel CreateCryptoCurrencyViewModel()
+        private CurrencyViewModel CreateCryptoCurrencyViewModel()
         {
-            return new CryptoCurrencyViewModel(_navigationStore, CreateCurrencySearchViewModel);
+            return new CurrencyViewModel(_navigationStore, CreateCurrencySearchViewModel);
         }
     }
 }

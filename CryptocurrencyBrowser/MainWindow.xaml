@@ -10,11 +10,14 @@
         Title="Currency Browser" Height="600" Width="900">
     <Grid MaxWidth="740">
         <Grid.Resources>
-            <DataTemplate DataType="{x:Type vms:CryptoCurrencyViewModel}">
-                <views:CryptoCurrencyView/>
+            <DataTemplate DataType="{x:Type vms:CurrencyViewModel}">
+                <views:CurrencyView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type vms:CurrencySearchViewModel}">
                 <views:CurrencySearchView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:CurrencyConvertViewModel}">
+                <views:CurrencyConvertView/>
             </DataTemplate>
         </Grid.Resources>
 

@@ -1,5 +1,6 @@
 ﻿using CryptocurrencyBrowser.Constants;
 using CryptocurrencyBrowser.Models;
+using CryptocurrencyBrowser.Services;
 using CryptocurrencyBrowser.ViewModels;
 
 using Newtonsoft.Json;
@@ -17,10 +18,7 @@ namespace CryptocurrencyBrowser.Commands
         private string? _currencyId;
         public string? CurrencyId
         {
-            get
-            {
-                return _currencyId;
-            }
+            get => _currencyId;
             set
             {
                 _currencyId = value?.ToLower().Replace(' ', '-');
@@ -32,7 +30,7 @@ namespace CryptocurrencyBrowser.Commands
             _currencySearchViewModel = currencySearchViewModel;
         }
 
-        public override void Execute(object? parameter)
+        public override async void Execute(object? parameter)
         {
             if (String.IsNullOrEmpty(CurrencyId))
             {
@@ -41,22 +39,7 @@ namespace CryptocurrencyBrowser.Commands
 
             try
             {
-                var httpClient = new HttpClient();
-
-                var response = httpClient.GetStringAsync(ConstantValues._assetSearchUrl + CurrencyId)
-                    .GetAwaiter()
-                    .GetResult();
-
-                var resultCoin = JsonConvert.DeserializeObject<CryptoCurrencySearch>(response);
-
-                response = httpClient.GetStringAsync(ConstantValues._assetSearchUrl +
-                    CurrencyId + ConstantValues._marketSearchSubUrl)
-                    .GetAwaiter()
-                    .GetResult();
-
-                var resultMarkets = JsonConvert.DeserializeObject<CryptoMarketSearch>(response);
-
-                var searchResult = new CryptoCurrencySearchBinder(resultCoin!.Data!, resultMarkets!.Data!);
+                var searchResult = await new CryptoCurrencyService().FindCoinById(CurrencyId); 
 
                 _currencySearchViewModel.SearchResult = searchResult;
 

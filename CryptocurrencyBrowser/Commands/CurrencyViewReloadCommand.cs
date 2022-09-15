@@ -1,4 +1,5 @@
 ﻿using CryptocurrencyBrowser.Models;
+using CryptocurrencyBrowser.Services;
 using CryptocurrencyBrowser.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,28 +12,38 @@ namespace CryptocurrencyBrowser.Commands
 {
     public class CurrencyViewReloadCommand : CommandBase
     {
-        private readonly CryptoCurrencyViewModel _cryptoCurrencyViewModel;
-        public CurrencyViewReloadCommand(CryptoCurrencyViewModel cryptoCurrencyViewModel)
+        private readonly CurrencyViewModel _cryptoCurrencyViewModel;
+        public CurrencyViewReloadCommand(CurrencyViewModel cryptoCurrencyViewModel)
         {
             _cryptoCurrencyViewModel = cryptoCurrencyViewModel;
         }
 
-        public override void Execute(object? parameter)
+        public override async void Execute(object? parameter)
         {
             try
             {
-                _cryptoCurrencyViewModel.CryptoCurrencies = CryptoCurrencyList.GetTopTenCurrency();
-
-                _cryptoCurrencyViewModel.ShowList = Visibility.Visible;
-
-                _cryptoCurrencyViewModel.ShowError = Visibility.Hidden;
+                _cryptoCurrencyViewModel.CryptoCurrencies = await new CryptoCurrencyService().GetTopTenCurrency();
+                
+                DisplayResult();
             }
             catch
             {
-                _cryptoCurrencyViewModel.ShowList = Visibility.Hidden;
-
-                _cryptoCurrencyViewModel.ShowError = Visibility.Visible;
+                DisplayError();
             }
+        }
+
+        private void DisplayResult()
+        {
+            _cryptoCurrencyViewModel.ShowList = Visibility.Visible;
+
+            _cryptoCurrencyViewModel.ShowError = Visibility.Hidden;
+        }
+
+        private void DisplayError()
+        {
+            _cryptoCurrencyViewModel.ShowList = Visibility.Hidden;
+
+            _cryptoCurrencyViewModel.ShowError = Visibility.Visible;
         }
     }
 }

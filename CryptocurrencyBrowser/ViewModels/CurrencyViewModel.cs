@@ -12,15 +12,12 @@ using System.Windows.Input;
 
 namespace CryptocurrencyBrowser.ViewModels
 {
-    public class CryptoCurrencyViewModel : ViewModelBase
+    public class CurrencyViewModel : ViewModelBase
     {
         private ObservableCollection<CryptoCurrencyBinder> _cryptoCurrency = new();
         public ObservableCollection<CryptoCurrencyBinder> CryptoCurrencies
         {
-            get
-            {
-                return _cryptoCurrency;
-            }
+            get => _cryptoCurrency;
             set
             {
                 _cryptoCurrency = value;
@@ -31,10 +28,7 @@ namespace CryptocurrencyBrowser.ViewModels
         private Visibility _showList = Visibility.Visible;
         public Visibility ShowList
         {
-            get
-            {
-                return _showList;
-            }
+            get => _showList;
             set
             {
                 _showList = value;
@@ -45,10 +39,7 @@ namespace CryptocurrencyBrowser.ViewModels
         private Visibility _showError = Visibility.Hidden;
         public Visibility ShowError
         {
-            get
-            {
-                return _showError;
-            }
+            get => _showError;
             set
             {
                 _showError = value;
@@ -59,7 +50,7 @@ namespace CryptocurrencyBrowser.ViewModels
         public ICommand ReloadCommand { get; }
         public ICommand CoinSearchCommand { get; }
 
-        public CryptoCurrencyViewModel(NavigationStore navigationStore, Func<CurrencySearchViewModel> createSearchViewModel)
+        public CurrencyViewModel(NavigationStore navigationStore, Func<CurrencySearchViewModel> createSearchViewModel)
         {
             ReloadCommand = new CurrencyViewReloadCommand(this);
 

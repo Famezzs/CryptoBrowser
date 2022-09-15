@@ -1,5 +1,5 @@
 ﻿using CryptocurrencyBrowser.Commands;
-using CryptocurrencyBrowser.Models;
+
 using System;
 using System.Windows;
 using System.Windows.Input;
@@ -11,10 +11,7 @@ namespace CryptocurrencyBrowser.ViewModels
         public CryptoCurrencySearchBinder? _searchResult;
         public CryptoCurrencySearchBinder? SearchResult
         {
-            get
-            {
-                return _searchResult;
-            }
+            get => _searchResult;
             set
             {
                 _searchResult = value;
@@ -25,10 +22,7 @@ namespace CryptocurrencyBrowser.ViewModels
         private string _coinName = string.Empty;
         public string CoinName
         {
-            get 
-            { 
-                return _coinName;
-            }
+            get => _coinName;
             set
             {
                 _coinName = value;
@@ -40,10 +34,7 @@ namespace CryptocurrencyBrowser.ViewModels
         private Visibility _showResult = Visibility.Hidden;
         public Visibility ShowResult
         {
-            get
-            {
-                return _showResult;
-            }
+            get => _showResult;
             set
             {
                 _showResult = value;
@@ -54,10 +45,7 @@ namespace CryptocurrencyBrowser.ViewModels
         private Visibility _showError = Visibility.Hidden;
         public Visibility ShowError
         {
-            get
-            {
-                return _showError;
-            }
+            get => _showError;
             set
             {
                 _showError = value;
@@ -66,10 +54,10 @@ namespace CryptocurrencyBrowser.ViewModels
         }
 
         public CurrencySearchSubmitCommand SubmitCommand { get; }
-        public CurrencySearchCancelCommand CancelCommand { get; }
+        public ICommand CancelCommand { get; }
         public ICommand GoBackCommand { get; }
 
-        public CurrencySearchViewModel(Stores.NavigationStore navigationStore, Func<CryptoCurrencyViewModel> createViewModel)
+        public CurrencySearchViewModel(Stores.NavigationStore navigationStore, Func<CurrencyViewModel> createViewModel)
         {
             SubmitCommand = new CurrencySearchSubmitCommand(this);
 

@@ -41,12 +41,16 @@
             </Grid>
 
             <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
-                <Button Margin="10 10 0 10" Content="Submit" Command="{Binding SubmitCommand}" FontSize="18" Padding="5"/>
-                <Button Margin="10 10 0 10" Content="Cancel" Command="{Binding CancelCommand}" FontSize="18" Padding="5"/>
-                <Button Margin="10 10 0 10" Content="Go Back" Command="{Binding GoBackCommand}" FontSize="18" Padding="5"/>
+                <Button Margin="10 10 0 10" Content="Submit" Command="{Binding SubmitCommand}" 
+                        FontSize="18" Padding="5" Cursor="Hand"/>
+                <Button Margin="10 10 0 10" Content="Cancel" Command="{Binding CancelCommand}"
+                        FontSize="18" Padding="5" Cursor="Hand"/>
+                <Button Margin="10 10 0 10" Content="Go Back" Command="{Binding GoBackCommand}"
+                        FontSize="18" Padding="5" Cursor="Hand"/>
             </StackPanel>
 
-            <TextBlock Grid.Column="1" Grid.Row="4" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Text="No result found." Visibility="{Binding ShowError}"/>
+            <TextBlock Grid.Column="1" Grid.Row="4" Margin="10 10 0 0" FontSize="16" FontWeight="DemiBold" Text="No result found." 
+                       Visibility="{Binding ShowError}" FontStyle="Italic"/>
 
             <Grid Visibility="{Binding ShowResult}" Grid.Column="1" Grid.Row="4">
                 <Grid Grid.Column="1" Grid.Row="4" DataContext="{Binding SearchResult}">
@@ -55,7 +59,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Border BorderThickness="1" BorderBrush="Gray" Grid.Column="0"  Margin="10 0 0 10"/>
+                    <Border BorderThickness="1" BorderBrush="Gray" Grid.Column="0"  Margin="10 0 0 10" CornerRadius="8"/>
 
                     <Grid Grid.Column="0" Margin="10 0 0 0">
                         <Grid.RowDefinitions>
@@ -121,7 +125,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Border BorderThickness="1" BorderBrush="Gray" Grid.ColumnSpan="2" Grid.RowSpan="4"/>
+                    <Border BorderThickness="1" BorderBrush="Gray" Grid.ColumnSpan="2" Grid.RowSpan="4" CornerRadius="8"/>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="Exchange Name"/>
                     <TextBlock Grid.Row="1" Grid.Column="0" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding ExchangeName}" Padding="0 0 0 5"/>
@@ -147,7 +151,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Border BorderThickness="1" BorderBrush="Gray" Grid.ColumnSpan="2" Grid.RowSpan="4"/>
+                    <Border BorderThickness="1" BorderBrush="Gray" Grid.ColumnSpan="2" Grid.RowSpan="4" CornerRadius="8"/>
                     
                     <TextBlock Grid.Row="0" Grid.Column="0" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="Exchange Name"/>
                     <TextBlock Grid.Row="1" Grid.Column="0" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding ExchangeName}" Padding="0 0 0 5"/>
@@ -173,7 +177,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Border BorderThickness="1" BorderBrush="Gray" Grid.ColumnSpan="2" Grid.RowSpan="4"/>
+                    <Border BorderThickness="1" BorderBrush="Gray" Grid.ColumnSpan="2" Grid.RowSpan="4" CornerRadius="8"/>
                     
                     <TextBlock Grid.Row="0" Grid.Column="0" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Width="auto" HorizontalAlignment="Left" Text="Exchange Name"/>
                     <TextBlock Grid.Row="1" Grid.Column="0" Margin="10 3 0 0" FontSize="14" Width="auto" HorizontalAlignment="Left" Text="{Binding ExchangeName}" Padding="0 0 0 5"/>

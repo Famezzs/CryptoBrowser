@@ -43,6 +43,7 @@
             <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
                 <Button Margin="10 10 0 10" Content="Submit" Command="{Binding SubmitCommand}" FontSize="18" Padding="5"/>
                 <Button Margin="10 10 0 10" Content="Cancel" Command="{Binding CancelCommand}" FontSize="18" Padding="5"/>
+                <Button Margin="10 10 0 10" Content="Go Back" Command="{Binding GoBackCommand}" FontSize="18" Padding="5"/>
             </StackPanel>
 
             <TextBlock Grid.Column="1" Grid.Row="4" Margin="10 10 0 0" FontSize="16" FontWeight="Bold" Text="No result found." Visibility="{Binding ShowError}"/>

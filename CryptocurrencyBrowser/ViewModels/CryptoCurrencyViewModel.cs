@@ -8,12 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace CryptocurrencyBrowser.ViewModels
 {
     public class CryptoCurrencyViewModel : ViewModelBase
     {
-        private ObservableCollection<CryptoCurrencyBinder> _cryptoCurrency;
+        private ObservableCollection<CryptoCurrencyBinder> _cryptoCurrency = new();
         public ObservableCollection<CryptoCurrencyBinder> CryptoCurrencies
         {
             get
@@ -55,16 +56,16 @@ namespace CryptocurrencyBrowser.ViewModels
             }
         }
 
-        public CurrencyViewReloadCommand ReloadCommand { get; }
-        public CurrencySearchRedirectCommand CoinSearchCommand { get; }
+        public ICommand ReloadCommand { get; }
+        public ICommand CoinSearchCommand { get; }
 
-        public CryptoCurrencyViewModel(NavigationStore navigationStore)
+        public CryptoCurrencyViewModel(NavigationStore navigationStore, Func<CurrencySearchViewModel> createSearchViewModel)
         {
-            ReloadCommand = new(this);
-
-            CoinSearchCommand = new(navigationStore);
+            ReloadCommand = new CurrencyViewReloadCommand(this);
 
             ReloadCommand.Execute(null);
+
+            CoinSearchCommand = new RedirectCommand(navigationStore, createSearchViewModel);
         }
     }
 }

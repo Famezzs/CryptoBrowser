@@ -1,5 +1,6 @@
 ﻿using CryptocurrencyBrowser.Commands;
 using CryptocurrencyBrowser.Models;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -66,12 +67,15 @@ namespace CryptocurrencyBrowser.ViewModels
 
         public CurrencySearchSubmitCommand SubmitCommand { get; }
         public CurrencySearchCancelCommand CancelCommand { get; }
+        public ICommand GoBackCommand { get; }
 
-        public CurrencySearchViewModel()
+        public CurrencySearchViewModel(Stores.NavigationStore navigationStore, Func<CryptoCurrencyViewModel> createViewModel)
         {
             SubmitCommand = new CurrencySearchSubmitCommand(this);
 
             CancelCommand = new CurrencySearchCancelCommand(this);
+
+            GoBackCommand = new RedirectCommand(navigationStore, createViewModel);
         }
     }
 }

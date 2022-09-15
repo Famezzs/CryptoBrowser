@@ -25,7 +25,7 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="1" Grid.Column="2" Text="Currency Converter" FontSize="28" FontWeight="SemiBold" Margin="10 20"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="Crypto Converter" FontSize="28" FontWeight="SemiBold" Margin="10 20"/>
 
         <Grid Grid.Row="2" Grid.Column="2">
             <Grid.ColumnDefinitions>
@@ -36,14 +36,14 @@
 
             <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" CornerRadius="8"/>
             <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1" CornerRadius="8"/>
-            
+
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" CornerRadius="8"/>
+                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" CornerRadius="8" Background="LightSkyBlue"/>
                 <TextBlock Grid.Row="0" Text="From" FontSize="24" HorizontalAlignment="Center" Margin="0 5"/>
 
                 <Grid Grid.Row="1">
@@ -67,7 +67,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" CornerRadius="8"/>
+                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" CornerRadius="8" Background="LightSkyBlue"/>
                 <TextBlock Grid.Row="0" Text="To" FontSize="24" HorizontalAlignment="Center" Margin="0 5"/>
 
                 <Grid Grid.Row="1">
@@ -86,8 +86,16 @@
             </Grid>
         </Grid>
 
-        <Button Grid.Row="3" Grid.Column="2" Margin="0 20" Width="80" Content="Submit" Command="{Binding SubmitCommand}"
+        <StackPanel Grid.Row="3" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Margin="0 20" Width="80" Content="Submit" Command="{Binding SubmitCommand}"
                         FontSize="18" Padding="5" Cursor="Hand"/>
+            <Button Margin="10 20" Width="80" Content="Cancel" Command="{Binding CancelCommand}"
+                        FontSize="18" Padding="5" Cursor="Hand"/>
+            <Button Margin="0 20" Width="80" Content="Go Back" Command="{Binding GoBackCommand}"
+                        FontSize="18" Padding="5" Cursor="Hand"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="4" Grid.Column="2" Visibility="{Binding ShowError}" Text="{Binding ErrorMessage}"/>
 
         <Grid Grid.Row="4" Grid.Column="2" Visibility="{Binding ShowResult}">
             <Grid.ColumnDefinitions>

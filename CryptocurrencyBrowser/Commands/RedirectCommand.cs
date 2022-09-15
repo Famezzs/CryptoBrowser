@@ -4,7 +4,7 @@ using System;
 
 namespace CryptocurrencyBrowser.Commands
 {
-    public class RedirectCommand : CommandBase
+    public class RedirectCommand : BaseCommand
     {
         private readonly NavigationStore _navigationStore;
         private readonly Func<ViewModelBase> _createViewModel;

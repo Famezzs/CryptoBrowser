@@ -1,16 +1,11 @@
-﻿using CryptocurrencyBrowser.Models;
+﻿using System.Windows;
+
 using CryptocurrencyBrowser.Services;
 using CryptocurrencyBrowser.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace CryptocurrencyBrowser.Commands
 {
-    public class CurrencyViewReloadCommand : CommandBase
+    public class CurrencyViewReloadCommand : BaseCommand
     {
         private readonly CurrencyViewModel _cryptoCurrencyViewModel;
         public CurrencyViewReloadCommand(CurrencyViewModel cryptoCurrencyViewModel)

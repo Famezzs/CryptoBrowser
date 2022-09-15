@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace CryptocurrencyBrowser.Commands
 {
-    public class CurrencySearchCancelCommand : CommandBase
+    public class CurrencySearchCancelCommand : BaseCommand
     {
         private readonly CurrencySearchViewModel _currencySearchViewModel;
 

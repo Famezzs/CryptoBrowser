@@ -1,4 +1,5 @@
-﻿using CryptocurrencyBrowser.Commands;
+﻿using CryptocurrencyBrowser.Actions.Currency;
+using CryptocurrencyBrowser.Commands;
 using CryptocurrencyBrowser.Models;
 using CryptocurrencyBrowser.Stores;
 using System;
@@ -25,7 +26,18 @@ namespace CryptocurrencyBrowser.ViewModels
             }
         }
 
-        private Visibility _showList = Visibility.Visible;
+        private string? _loadMessage = "Loading...";
+        public string? LoadMessage
+        {
+            get => _loadMessage;
+            set
+            {
+                _loadMessage = value;
+                OnPropertyChanged(nameof(LoadMessage));
+            }
+        }
+
+        private Visibility _showList = Visibility.Hidden;
         public Visibility ShowList
         {
             get => _showList;
@@ -33,6 +45,17 @@ namespace CryptocurrencyBrowser.ViewModels
             {
                 _showList = value;
                 OnPropertyChanged(nameof(ShowList));
+            }
+        }
+
+        private Visibility _showLoading = Visibility.Hidden;
+        public Visibility ShowLoading
+        {
+            get => _showLoading;
+            set
+            {
+                _showLoading = value;
+                OnPropertyChanged(nameof(ShowLoading));
             }
         }
 
@@ -49,14 +72,19 @@ namespace CryptocurrencyBrowser.ViewModels
 
         public ICommand ReloadCommand { get; }
         public ICommand CoinSearchCommand { get; }
+        public ICommand CurrencyConvertCommand { get; }
 
-        public CurrencyViewModel(NavigationStore navigationStore, Func<CurrencySearchViewModel> createSearchViewModel)
+        public CurrencyViewModel(NavigationStore navigationStore, 
+            Func<CurrencySearchViewModel> createSearchViewModel,
+            Func<CurrencyConvertViewModel> createConvertViewModel)
         {
-            ReloadCommand = new CurrencyViewReloadCommand(this);
+            ReloadCommand = new ViewCommand(ViewReload.Execute, this);
 
             ReloadCommand.Execute(null);
 
             CoinSearchCommand = new RedirectCommand(navigationStore, createSearchViewModel);
+
+            CurrencyConvertCommand = new RedirectCommand(navigationStore, createConvertViewModel);
         }
     }
 }

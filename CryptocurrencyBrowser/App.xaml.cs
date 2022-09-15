@@ -24,7 +24,9 @@ namespace CryptocurrencyBrowser
 
         protected override void OnStartup(StartupEventArgs eventArguments)
         {
-            _navigationStore.CurrentViewModel = new CurrencyViewModel(_navigationStore, CreateCurrencySearchViewModel);
+            _navigationStore.CurrentViewModel = new CurrencyViewModel(_navigationStore,
+                CreateCurrencySearchViewModel,
+                CreateCurrencyConvertModel);
 
             MainWindow = new MainWindow()
             {
@@ -36,14 +38,23 @@ namespace CryptocurrencyBrowser
             base.OnStartup(eventArguments);
         }
 
+        private CurrencyConvertViewModel CreateCurrencyConvertModel()
+        {
+            return new CurrencyConvertViewModel(_navigationStore,
+                CreateCryptoCurrencyViewModel);
+        }
+
         private CurrencySearchViewModel CreateCurrencySearchViewModel()
         {
-            return new CurrencySearchViewModel(_navigationStore, CreateCryptoCurrencyViewModel);
+            return new CurrencySearchViewModel(_navigationStore,
+                CreateCryptoCurrencyViewModel);
         }
 
         private CurrencyViewModel CreateCryptoCurrencyViewModel()
         {
-            return new CurrencyViewModel(_navigationStore, CreateCurrencySearchViewModel);
+            return new CurrencyViewModel(_navigationStore, 
+                CreateCurrencySearchViewModel,
+                CreateCurrencyConvertModel);
         }
     }
 }

@@ -1,12 +1,10 @@
-﻿using CryptocurrencyBrowser.Commands;
-using CryptocurrencyBrowser.Stores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
 using System.Windows.Input;
+
+using CryptocurrencyBrowser.Actions.CurrencyConvert;
+using CryptocurrencyBrowser.Commands;
+using CryptocurrencyBrowser.Stores;
 
 namespace CryptocurrencyBrowser.ViewModels
 {
@@ -46,13 +44,24 @@ namespace CryptocurrencyBrowser.ViewModels
         }
 
         private double _toAmout;
-        private double ToAmount
+        public double ToAmount
         {
             get => _toAmout;
             set
             {
                 _toAmout = value;
                 OnPropertyChanged(nameof(ToAmount));
+            }
+        }
+
+        private string? _errorMessage;
+        public string? ErrorMessage
+        {
+            get => _errorMessage;
+            set
+            {
+                _errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
             }
         }
 
@@ -78,12 +87,14 @@ namespace CryptocurrencyBrowser.ViewModels
             }
         }
 
-        public ICommand SubmitCommand;
-        public ICommand CancelCommand;
-        public ICommand GoBackCommand;
+        public ICommand SubmitCommand { get; }
+        public ICommand CancelCommand { get; }
+        public ICommand GoBackCommand { get; }
 
         public CurrencyConvertViewModel(NavigationStore navigationStore, Func<CurrencyViewModel> createViewModel)
         {
+            CancelCommand = new ViewCommand(CancelConvert.Execute, this);
+
             GoBackCommand = new RedirectCommand(navigationStore, createViewModel);
         }
     }

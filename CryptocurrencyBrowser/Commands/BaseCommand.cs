@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace CryptocurrencyBrowser.Commands
 {
-    public abstract class CommandBase : ICommand
+    public abstract class BaseCommand : ICommand
     {
         public event EventHandler? CanExecuteChanged;
 

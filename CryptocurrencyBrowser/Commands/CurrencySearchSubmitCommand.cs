@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace CryptocurrencyBrowser.Commands
 {
-    public class CurrencySearchSubmitCommand : CommandBase
+    public class CurrencySearchSubmitCommand : BaseCommand
     {
         private readonly CurrencySearchViewModel _currencySearchViewModel;
 

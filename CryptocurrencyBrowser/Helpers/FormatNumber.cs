@@ -9,18 +9,23 @@ namespace CryptocurrencyBrowser.Helpers
 {
     public class FormatNumber
     {
-        public static string FancyFormat(double value)
+        public static string FancyFormat(double? value)
         {
-            var result = (long) value;
-
-            if (result == 0)
+            if (value == null)
             {
                 return ConstantValues._informationUnavailableMessage;
             }
 
-            result = MaximumThreeSignificantDigits(result);
-
             var resultPrefix = '$';
+            
+            if (value < 10)
+            {
+                return resultPrefix + Math.Round((double)value, 3).ToString();
+            }
+
+            var result = (long) value;
+
+            result = MaximumThreeSignificantDigits(result);
 
             if (result >= 1000000000)
             {
@@ -40,14 +45,14 @@ namespace CryptocurrencyBrowser.Helpers
             return resultPrefix + result.ToString("#,0");
         }
 
-        public static string RoundDouble(double value)
+        public static string RoundDouble(double? value)
         {
-            if (value.Equals(0))
+            if (value == null)
             {
                 return ConstantValues._informationUnavailableMessage;
             }
 
-            return Math.Round(value, 2).ToString() + "%";
+            return Math.Round((double)value, 2).ToString() + "%";
         }
 
         public static long MaximumThreeSignificantDigits(long number)

@@ -5,9 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CryptocurrencyBrowser"
         xmlns:views="clr-namespace:CryptocurrencyBrowser.Views"
+        xmlns:vms="clr-namespace:CryptocurrencyBrowser.ViewModels"
         mc:Ignorable="d"
         Title="Currency Browser" Height="600" Width="900">
     <Grid MaxWidth="740">
-        <views:CurrencySearchView DataContext="{Binding CurrentViewModel}"/>
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type vms:CryptoCurrencyViewModel}">
+                <views:CryptoCurrencyView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:CurrencySearchViewModel}">
+                <views:CurrencySearchView/>
+            </DataTemplate>
+        </Grid.Resources>
+
+        <ContentControl Content="{Binding CurrentViewModel}"/>
     </Grid>
 </Window>

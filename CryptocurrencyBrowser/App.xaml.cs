@@ -1,4 +1,5 @@
-﻿using CryptocurrencyBrowser.ViewModels;
+﻿using CryptocurrencyBrowser.Stores;
+using CryptocurrencyBrowser.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,11 +15,20 @@ namespace CryptocurrencyBrowser
     /// </summary>
     public partial class App : Application
     {
+        private readonly NavigationStore _navigationStore;
+
+        public App()
+        {
+            _navigationStore = new();
+        }
+
         protected override void OnStartup(StartupEventArgs eventArguments)
         {
+            _navigationStore.CurrentViewModel = new CryptoCurrencyViewModel(_navigationStore);
+
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel()
+                DataContext = new MainViewModel(_navigationStore)
             };
 
             MainWindow.Show();

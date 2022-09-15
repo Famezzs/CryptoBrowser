@@ -6,70 +6,82 @@
              xmlns:local="clr-namespace:CryptocurrencyBrowser.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="25"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="25" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="Top 10 Crypto Currencies" HorizontalAlignment="Center" FontSize="18"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Top 10 Crypto Currencies" HorizontalAlignment="Center" FontSize="20" Margin="0 20"/>
 
-        <ListView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding CryptoCurrencies}" Width="730">
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Unable to retrieve information. Check your Internet connection and try refreshing the page."
+                   FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Visibility="{Binding ShowError}" Width="auto"/>
 
-            <ListView.View>
-                <GridView>
-                    <GridView.ColumnHeaderContainerStyle>
-                        <Style TargetType="{x:Type GridViewColumnHeader}">
-                            <Setter Property="IsEnabled" Value="False"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsEnabled" Value="False">
-                                    <Setter Property="TextElement.Foreground" Value="Black"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </GridView.ColumnHeaderContainerStyle>
+        <Grid Grid.Row="1" Grid.Column="1" Visibility="{Binding ShowList}" Width="auto">
+            <ListView Grid.Row="1" Grid.Column="1" ItemsSource="{Binding CryptoCurrencies}" Width="570" Height="auto"  Margin="0 20">
 
-                    <GridViewColumn Header="Coin" Width="180">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock HorizontalAlignment="Center" Text="{Binding Coin}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                <ListView.View>
+                    <GridView>
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="TextElement.Foreground" Value="Black"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
 
-                    <GridViewColumn Header="Price" Width="180">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Padding="0 0 20 0" Text="{Binding Price}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                        <GridViewColumn Header="Coin" Width="120">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Coin}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
 
-                    <GridViewColumn Header="24h Percent Change" Width="180">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Padding="0 0 20 0" Text="{Binding ChangePercent24Hr}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                        <GridViewColumn Header="Price" Width="120">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Padding="0 0 20 0" Text="{Binding Price}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
 
-                    <GridViewColumn Header="24h Volume" Width="180">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Padding="0 0 20 0" Text="{Binding VolumeUsd24Hr}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                        <GridViewColumn Header="24h Percent Change" Width="160">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Padding="0 0 20 0" Text="{Binding ChangePercent24Hr}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
 
-                </GridView>
-            </ListView.View>
-        </ListView>
+                        <GridViewColumn Header="24h Volume" Width="160">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Padding="0 0 20 0" Text="{Binding VolumeUsd24Hr}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="0 20" HorizontalAlignment="Center">
+            <Button Margin="0 10" Content="Reload Page" Command="{Binding ReloadCommand}" FontSize="18" Padding="5"/>
+            <Button Margin="10 10" Content="Coin Search" Command="{Binding CoinSearchCommand}" FontSize="18" Padding="5"/>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -8,16 +8,23 @@ namespace CryptocurrencyBrowser.Actions.CurrencySearch
     {
         public static void Execute(ViewModelBase viewModel)
         {
-            if (viewModel is CurrencySearchViewModel model)
+            if (viewModel is not CurrencySearchViewModel model)
             {
-                model.SearchResult = null;
-
-                model.CoinName = string.Empty;
-
-                model.ShowResult = Visibility.Hidden;
-
-                model.ShowError = Visibility.Hidden;
+                return;
             }
+            
+            HideResult(model);
+        }
+
+        private static void HideResult(CurrencySearchViewModel model)
+        {
+            model.SearchResult = null;
+
+            model.CoinName = string.Empty;
+
+            model.ShowResult = Visibility.Hidden;
+
+            model.ShowError = Visibility.Hidden;
         }
     }
 }

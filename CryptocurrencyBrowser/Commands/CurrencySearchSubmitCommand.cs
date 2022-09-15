@@ -3,10 +3,7 @@ using CryptocurrencyBrowser.Models;
 using CryptocurrencyBrowser.Services;
 using CryptocurrencyBrowser.ViewModels;
 
-using Newtonsoft.Json;
-
 using System;
-using System.Net.Http;
 using System.Windows;
 
 namespace CryptocurrencyBrowser.Commands
@@ -39,7 +36,7 @@ namespace CryptocurrencyBrowser.Commands
 
             try
             {
-                var searchResult = await new CryptoCurrencyService().FindCoinById(CurrencyId); 
+                var searchResult = await new CryptoCurrencyService().FindCoinWithMarketsById(CurrencyId); 
 
                 _currencySearchViewModel.SearchResult = searchResult;
 

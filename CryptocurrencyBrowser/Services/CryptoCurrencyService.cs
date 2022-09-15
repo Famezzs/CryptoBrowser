@@ -34,7 +34,7 @@ namespace CryptocurrencyBrowser.Services
             return listResult;
         }
 
-        public async Task<CryptoCurrencySearchBinder> FindCoinById(string currencyId)
+        public async Task<CryptoCurrencySearchBinder> FindCoinWithMarketsById(string currencyId)
         {
             var httpClient = new HttpClient();
 
@@ -51,6 +51,18 @@ namespace CryptocurrencyBrowser.Services
             var searchResult = new CryptoCurrencySearchBinder(resultCoin!.Data!, resultMarkets!.Data!);
 
             return searchResult;
+        }
+
+        public async Task<CryptoCurrency?> FindCoinById(string currencyId)
+        {
+            var httpClient = new HttpClient();
+
+            var response = await httpClient.GetStringAsync(ConstantValues._assetSearchUrl +
+                currencyId);
+
+            var resultCoin = JsonConvert.DeserializeObject<CryptoCurrencySearch>(response);
+
+            return resultCoin!.Data;
         }
     }
 }

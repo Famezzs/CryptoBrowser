@@ -13,9 +13,9 @@ namespace CryptocurrencyBrowser.ViewModels
         private readonly CryptoMarket _cryptoMarket;
 
         public string ExchangeName => _cryptoMarket.ExchangeId ?? string.Empty;
-        public string Price => FormatNumber.FancyFormat(_cryptoMarket.PriceUsd ?? 0);
-        public string VolumeUsd24Hr => FormatNumber.FancyFormat(_cryptoMarket.VolumeUsd24Hr ?? 0);
-        public string VolumePercent => FormatNumber.RoundDouble(_cryptoMarket.VolumePercent ?? 0);
+        public string Price => FormatNumber.FancyFormat(_cryptoMarket.PriceUsd);
+        public string VolumeUsd24Hr => FormatNumber.FancyFormat(_cryptoMarket.VolumeUsd24Hr);
+        public string VolumePercent => FormatNumber.RoundPercent(_cryptoMarket.VolumePercent);
 
         public CryptoMarketBinder(CryptoMarket cryptoMarket)
         {

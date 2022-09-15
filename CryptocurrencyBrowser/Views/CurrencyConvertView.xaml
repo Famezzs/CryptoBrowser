@@ -20,12 +20,11 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="1" Grid.Column="2" Text="Crypto Converter" FontSize="28" FontWeight="SemiBold" Margin="10 20"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="Crypto Converter" FontSize="24" Margin="10 20"/>
 
         <Grid Grid.Row="2" Grid.Column="2">
             <Grid.ColumnDefinitions>
@@ -43,8 +42,8 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" CornerRadius="8" Background="LightSkyBlue"/>
-                <TextBlock Grid.Row="0" Text="From" FontSize="24" HorizontalAlignment="Center" Margin="0 5"/>
+                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" CornerRadius="8" Background="#ededed"/>
+                <TextBlock Grid.Row="0" Text="From" FontSize="20" HorizontalAlignment="Center" Margin="0 5"/>
 
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
@@ -67,21 +66,29 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" CornerRadius="8" Background="LightSkyBlue"/>
-                <TextBlock Grid.Row="0" Text="To" FontSize="24" HorizontalAlignment="Center" Margin="0 5"/>
+                <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" CornerRadius="8" Background="#ededed"/>
+                <TextBlock Grid.Row="0" Text="To" FontSize="20" HorizontalAlignment="Center" Margin="0 5"/>
 
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Text="Name" FontSize="18" Margin="20 5 0 0"/>
                     <TextBox Grid.Row="1" Text="{Binding ToName, UpdateSourceTrigger=PropertyChanged}" Width="200" HorizontalAlignment="Left" Margin="20 5" Padding="5"/>
-                    <TextBlock Grid.Row="2" Text="Amount" FontSize="18" Margin="20 5 0 0"/>
-                    <TextBox Grid.Row="3" Text="{Binding ToAmount, UpdateSourceTrigger=PropertyChanged}" Width="200" HorizontalAlignment="Left" Margin="20 5 10 10" Padding="5"/>
+
+                    <Grid Grid.Row="2" Visibility="{Binding ShowResult}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Result" Grid.Row="0" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding Result}" Grid.Row="1" FontSize="18" HorizontalAlignment="Center"/>
+                    </Grid>
+                    
                 </Grid>
             </Grid>
         </Grid>
@@ -95,24 +102,7 @@
                         FontSize="18" Padding="5" Cursor="Hand"/>
         </StackPanel>
 
-        <TextBlock Grid.Row="4" Grid.Column="2" Visibility="{Binding ShowError}" Text="{Binding ErrorMessage}"/>
-
-        <Grid Grid.Row="4" Grid.Column="2" Visibility="{Binding ShowResult}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <TextBlock Text="Result" Grid.Row="0" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center"/>
-                <TextBlock Text="" Grid.Row="1" FontSize="18" HorizontalAlignment="Center"/>
-            </Grid>
-        </Grid>
+        <TextBlock Grid.Row="4" Grid.Column="2" Visibility="{Binding ShowError}" Text="{Binding ErrorMessage}" HorizontalAlignment="Center"
+                   FontSize="20" FontWeight="SemiBold" FontStyle="Italic"/>
     </Grid>
 </UserControl>

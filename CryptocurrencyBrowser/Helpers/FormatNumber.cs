@@ -45,7 +45,7 @@ namespace CryptocurrencyBrowser.Helpers
             return resultPrefix + result.ToString("#,0");
         }
 
-        public static string RoundDouble(double? value)
+        public static string RoundPercent(double? value)
         {
             if (value == null)
             {
@@ -53,6 +53,16 @@ namespace CryptocurrencyBrowser.Helpers
             }
 
             return Math.Round((double)value, 2).ToString() + "%";
+        }
+
+        public static string RoundDouble(double? value)
+        {
+            if (value == null)
+            {
+                return ConstantValues._informationUnavailableMessage;
+            }
+
+            return Math.Round((double)value, 2).ToString();
         }
 
         public static long MaximumThreeSignificantDigits(long number)

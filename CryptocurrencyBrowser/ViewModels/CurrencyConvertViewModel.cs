@@ -21,8 +21,8 @@ namespace CryptocurrencyBrowser.ViewModels
             }
         }
 
-        private double _fromAmount;
-        public double FromAmount
+        private double? _fromAmount;
+        public double? FromAmount
         {
             get => _fromAmount;
             set
@@ -43,14 +43,14 @@ namespace CryptocurrencyBrowser.ViewModels
             }
         }
 
-        private double _toAmout;
-        public double ToAmount
+        private string? _result;
+        public string? Result
         {
-            get => _toAmout;
+            get => _result;
             set
             {
-                _toAmout = value;
-                OnPropertyChanged(nameof(ToAmount));
+                _result = value;
+                OnPropertyChanged(nameof(Result));
             }
         }
 
@@ -93,6 +93,8 @@ namespace CryptocurrencyBrowser.ViewModels
 
         public CurrencyConvertViewModel(NavigationStore navigationStore, Func<CurrencyViewModel> createViewModel)
         {
+            SubmitCommand = new ViewCommand(SubmitConvert.Execute, this);
+
             CancelCommand = new ViewCommand(CancelConvert.Execute, this);
 
             GoBackCommand = new RedirectCommand(navigationStore, createViewModel);

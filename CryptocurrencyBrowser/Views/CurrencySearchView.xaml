@@ -67,7 +67,7 @@
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
 
-                        <Border BorderThickness="1" BorderBrush="Gray" CornerRadius="8">
+                        <Border BorderThickness="1" BorderBrush="Gray" CornerRadius="8" Background="#ededed">
                             <TextBlock Text="Coin Info" Grid.Row="0" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Padding="0 10"/>
                         </Border>
 

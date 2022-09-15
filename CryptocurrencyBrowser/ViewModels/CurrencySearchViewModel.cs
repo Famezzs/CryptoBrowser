@@ -27,7 +27,6 @@ namespace CryptocurrencyBrowser.ViewModels
             set
             {
                 _coinName = value;
-                SubmitCommand.CurrencyId = value;
                 OnPropertyChanged(nameof(CoinName));
             }
         }
@@ -54,13 +53,13 @@ namespace CryptocurrencyBrowser.ViewModels
             }
         }
 
-        public CurrencySearchSubmitCommand SubmitCommand { get; }
+        public ICommand SubmitCommand { get; }
         public ICommand CancelCommand { get; }
         public ICommand GoBackCommand { get; }
 
         public CurrencySearchViewModel(Stores.NavigationStore navigationStore, Func<CurrencyViewModel> createViewModel)
         {
-            SubmitCommand = new CurrencySearchSubmitCommand(this);
+            SubmitCommand = new ViewCommand(SubmitSearch.Execute, this);
 
             CancelCommand = new ViewCommand(CancelSearch.Execute, this);
 

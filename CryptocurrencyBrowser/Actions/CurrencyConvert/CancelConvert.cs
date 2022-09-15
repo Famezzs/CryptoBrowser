@@ -12,14 +12,21 @@ namespace CryptocurrencyBrowser.Actions.CurrencyConvert
     {
         public static void Execute(ViewModelBase viewModel)
         {
-            if (viewModel is CurrencyConvertViewModel model)
+            if (viewModel is not CurrencyConvertViewModel model)
             {
-                model.ShowResult = Visibility.Hidden;
-
-                model.ShowError = Visibility.Hidden;
-
-                model.ErrorMessage = string.Empty;
+                return;
             }
+
+            HideResult(model);
+        }
+
+        private static void HideResult(CurrencyConvertViewModel model)
+        {
+            model.ShowResult = Visibility.Hidden;
+
+            model.ShowError = Visibility.Hidden;
+
+            model.ErrorMessage = string.Empty;
         }
     }
 }

@@ -29,7 +29,7 @@ namespace CryptocurrencyBrowser.Actions.CurrencyConvert
 
                 var secondCoin = await new CryptoCurrencyService().FindCoinById(model.ToName!.ToLower().Replace(' ', '-'));
 
-                var amount = firstCoin!.PriceUsd! / secondCoin!.PriceUsd!;
+                var amount = (firstCoin!.PriceUsd! * model.FromAmount)/ secondCoin!.PriceUsd!;
 
                 result += FormatNumber.RoundDouble(amount) + " " + model.ToName!;
 
@@ -76,6 +76,14 @@ namespace CryptocurrencyBrowser.Actions.CurrencyConvert
                 model.FromAmount <= 0)
             {
                 DisplayError(model, ConstantValues._invalidFirstAmountMessage);
+
+                return false;
+            }
+
+            if (model.FromAmount > ConstantValues._largestNumberAcceptable ||
+                model.FromAmount < ConstantValues._smallestNumberAcceptable)
+            {
+                DisplayError(model, ConstantValues._amountExceedsAcceptable);
 
                 return false;
             }

@@ -27,6 +27,14 @@ namespace CryptocurrencyBrowser.Actions.CurrencyConvert
             model.ShowError = Visibility.Hidden;
 
             model.ErrorMessage = string.Empty;
+
+            model.Result = string.Empty;
+
+            model.FromName = string.Empty;
+
+            model.ToName = string.Empty;
+
+            model.FromAmount = null;
         }
     }
 }

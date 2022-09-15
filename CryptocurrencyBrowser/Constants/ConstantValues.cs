@@ -14,8 +14,13 @@ namespace CryptocurrencyBrowser.Constants
         public static readonly string _informationUnavailableMessage = "Unavailable";
         public static readonly string _connectionErrorMessage = "Unable to retrieve any information. Please verify your Internet connection before proceeding.";
         public static readonly string _invalidFirstAmountMessage = "First amount provided is invalid.";
-        public static readonly string _invalidFirstCoinMessage = "Invalid value provided for first coin.";
-        public static readonly string _invalidSecondCoinMessage = "Invalid value provided for second coin.";
+        public static readonly string _invalidFirstCoinMessage = "First coin name provided is invalid.";
+        public static readonly string _invalidSecondCoinMessage = "Second coin name provided is invalid.";
         public static readonly string _coinDoesNotExistMessage = "No information is available about coin/coins specified.";
+        public static readonly double _smallestNumberForRounding = 0.0001;
+        public static readonly double _largestNumberBeforeRounding = 1000;
+        public static readonly double _largestNumberAcceptable = 1000000;
+        public static readonly double _smallestNumberAcceptable = 0.00001;
+        public static readonly string _amountExceedsAcceptable = $"Amount should be less than {_largestNumberAcceptable} and more than {_smallestNumberAcceptable}";
     }
 }

@@ -62,7 +62,19 @@ namespace CryptocurrencyBrowser.Helpers
                 return ConstantValues._informationUnavailableMessage;
             }
 
-            return Math.Round((double)value, 2).ToString();
+            if (value < ConstantValues._smallestNumberForRounding)
+            {
+                var result = (double)value;
+
+                return result.ToString("0." + new string('#', 15));
+            }
+
+            if (value > ConstantValues._largestNumberBeforeRounding)
+            {
+                return FancyFormat(value);
+            }
+
+            return Math.Round((double)value, 4).ToString();
         }
 
         public static long MaximumThreeSignificantDigits(long number)
